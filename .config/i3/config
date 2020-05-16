@@ -131,7 +131,7 @@ bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 #####################################################################################################################
 
 # start dmenu
-bindsym $mod+shift+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+bindsym $mod+shift+w exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
 # gmrun
 bindsym mod1+F2 exec --no-startup-id gmrun
@@ -143,7 +143,7 @@ bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
 bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto Sans 13"
 
 # start rofi small
-bindsym $mod+F12 exec --no-startup-id rofi -show run -font "Noto Sans 13"
+bindsym $mod+shift+d exec --no-startup-id rofi -show drun
 
 
 
@@ -274,7 +274,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-# Super + F in arcolinux is execute thunar
+# Super + F in arcolinux is execute pcmanfm
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
@@ -359,7 +359,7 @@ font pango:Noto Mono Regular 13
 
 # Workspace 2 text editor related
 #assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"]       → 2
-#assign [class="Xed|xed|Brackets|Atom|Code|Geany"]                                   → 2
+#assign [class="Xed|xed|Brackets|code|Code|Geany"]                                   → 2
 
 # Workspace 3 Inkscape
 #assign [class="Inkscape"]                                                           → 3
@@ -379,7 +379,7 @@ font pango:Noto Mono Regular 13
 #assign [class="Vmplayer|VirtualBox"]						    → 7
 
 # Workspace 8 file managers
-#assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                 → 8
+#assign [class="Nemo|pcmanfm|Caja|nautilus|Nautilus"]                                 → 8
 
 # Workspace 9 email clients
 #assign [class="Geary|Evolution"]                                                    → 9
@@ -404,10 +404,10 @@ for_window [class="Vivaldi-stable"] focus
 
 #text-editor
 #exec --no-startup-id geany
-#exec --no-startup-id atom
+#exec --no-startup-id code
 
 #file manager
-#exec --no-startup-id thunar
+#exec --no-startup-id pcmanfm
 
 #Mail clients
 #exec --no-startup-id evolution
@@ -451,14 +451,17 @@ exec --no-startup-id volumeicon
 #variety
 exec --no-startup-id variety
 
+exec_always --no-startup-id wal -nRa 90 &
+
 # clipman
 #exec --no-startup-id xfce4-clipman
 
 #Conky
-exec --no-startup-id conky -c ~/.config/i3/system-overview
+exec --no-startup-id conky -c ~/.conkyrc &
+exec --no-startup-id conky -c ~/.conkyrc_helper &
 
 #feh sets wallpaper
-exec --no-startup-id feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+exec --no-startup-id feh --bg-fill /usr/share/backgrounds/hefftorlinux/sundown_landscape.png &
 
 #Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
@@ -471,8 +474,8 @@ exec --no-startup-id xfce4-power-manager &
 # ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
 # IF xfsettingsd is activated you can not change themes
 #exec --no-startup-id xfsettingsd &
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
-
+exec --no-startup-id dunst &
+exec_always --no-startup-id dex ~/.config/autostart/hefftor-welcome-app.desktop &
 #####################################################################################################################
 #################                          applications keyboard shortcuts                          #################
 #####################################################################################################################
@@ -485,11 +488,11 @@ bindsym control+mod1+Next exec --no-startup-id conky-rotate -n
 bindsym control+mod1+Prior exec --no-startup-id conky-rotate -p
 
 # terminal
-bindsym $mod+Return exec --no-startup-id termite;focus
-bindsym $mod+KP_Enter exec --no-startup-id termite;focus
-bindsym control+mod1+t exec --no-startup-id termite; focus
-bindsym control+mod1+Return exec --no-startup-id termite; focus
-bindsym control+mod1+KP_Enter exec --no-startup-id termite; focus
+bindsym $mod+Return exec --no-startup-id urxvt;focus
+bindsym $mod+KP_Enter exec --no-startup-id urxvt;focus
+bindsym control+mod1+t exec --no-startup-id urxvt; focus
+bindsym control+mod1+Return exec --no-startup-id urxvt; focus
+bindsym control+mod1+KP_Enter exec --no-startup-id urxvt; focus
 bindsym F12 exec --no-startup-id xfce4-terminal --drop-down; focus
 
 #System monitor
@@ -503,7 +506,7 @@ bindsym control+mod1+c exec --no-startup-id catfish;focus
 
 #slimlock
 #arcolinux conflict
-bindsym Mod1+k exec slimlock
+bindsym Mod1+k exec betterlockscreen -l dimblur
 #use super + X to get to slimlock
 
 #rofi theme selector
@@ -542,7 +545,7 @@ bindsym control+mod1+g exec --no-startup-id chromium;focus
 
 #workspace 2 related
 #bindsym $mod+F2 exec --no-startup-id geany;focus
-bindsym $mod+F2 exec --no-startup-id atom;focus
+bindsym $mod+F2 exec --no-startup-id code;focus
 bindsym control+mod1+w exec --no-startup-id geany;focus
 
 #workspace 3 related
@@ -562,11 +565,11 @@ bindsym $mod+F6 exec --no-startup-id vlc;focus
 bindsym $mod+F7 exec --no-startup-id virtualbox;focus
 
 #workspace 8 related
-for_window [class="Thunar"] focus
-bindsym $mod+F8 exec --no-startup-id thunar;focus
-bindsym $mod+Shift+Return exec --no-startup-id thunar;focus
-bindsym $mod+Shift+KP_Enter exec --no-startup-id thunar;focus
-bindsym control+mod1+b exec --no-startup-id thunar;focus
+for_window [class="pcmanfm"] focus
+bindsym $mod+F8 exec --no-startup-id pcmanfm;focus
+bindsym $mod+Shift+Return exec --no-startup-id pcmanfm;focus
+bindsym $mod+Shift+KP_Enter exec --no-startup-id pcmanfm;focus
+bindsym control+mod1+b exec --no-startup-id pcmanfm;focus
 
 #workspace 9 related
 bindsym $mod+F9 exec --no-startup-id evolution;focus
@@ -628,6 +631,7 @@ for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Xfce4-settings-manager"] floating disable
 for_window [class="Xfce4-taskmanager"] floating enable
 
+for_window [class="Hefftor_welcome_app"] floating enable
 
 #for_window [instance="gimp"] floating disable
 for_window [instance="script-fu"] border normal
@@ -784,9 +788,9 @@ popup_during_fullscreen smart
 # want it
 
 
-for_window [class="^.*"] border pixel 2
-gaps inner 5
-gaps outer 5
+for_window [class="^.*"] border pixel 4
+gaps inner 8
+gaps outer 8
 #smart_gaps on
 #smart_borders on
 
@@ -863,9 +867,9 @@ exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
 # DarkGrey background with white text - not focus grey background - black text
 # Windows decoration colors
 # class                 border  backgr. text    indicator
-client.placeholder      #242424 #242424 #242424
-client.background       #242424 #242424 #242424
-client.focused          #6790EB #6790EB #e5e5e5 #6790EB
+client.placeholder      #FFFFFF #FFFFFF #242424
+client.background       #FFFFFF #FFFFFF #242424
+client.focused          #FFFFFF #FFFFFF #e5e5e5 #FFFFFF
 client.unfocused        #222222 #222222 #aaaaaa #222222
 client.focused_inactive #222222 #222222 #a9a9a9 #222222
 client.urgent           #d42121 #d42121 #f7f7f7 #d42121
