@@ -131,7 +131,7 @@ bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 #####################################################################################################################
 
 # start dmenu
-bindsym $mod+shift+w exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+bindsym $mod+shift+w exec --no-startup-id ~/.local/bin/dmenu.sh
 
 # gmrun
 bindsym mod1+F2 exec --no-startup-id gmrun
@@ -145,8 +145,15 @@ bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto San
 # start rofi small
 bindsym $mod+shift+d exec --no-startup-id rofi -show drun
 
+# super + shift + plus
+bindsym $mod+shift+plus exec --no-startup-id ~/.local/bin/lmc up
 
+# super + shift + minus
+bindsym $mod+shift+minus exec --no-startup-id ~/.local/bin/lmc down
 
+# Scratchpad
+bindsym $mod+Shift+t exec urxvt -title scratch
+bindsym $mod+d scratchpad show
 #####################################################################################################################
 #################                          how to exit, logoff, suspend, ...                        #################
 #####################################################################################################################
@@ -440,10 +447,13 @@ exec_always --no-startup-id numlockx on
 
 # dropbox
 #exec --no-startup-id dropbox start
+exec --no-startup-id glava &
+exec --no-startup-id mpd &
 
+exec --no-startup-id xsetroot -cursor_name left_ptr &
 # insync
 #exec --no-startup-id insync start
-
+exec --no-startup-id urxvt -title scratch &
 # volume
 #exec --no-startup-id pasystray
 exec --no-startup-id volumeicon
@@ -459,7 +469,6 @@ exec_always --no-startup-id wal -nRa 90 &
 #Conky
 exec --no-startup-id conky -c ~/.conkyrc &
 exec --no-startup-id conky -c ~/.conkyrc_helper &
-
 #feh sets wallpaper
 exec --no-startup-id feh --bg-fill /usr/share/backgrounds/hefftorlinux/sundown_landscape.png &
 
@@ -631,7 +640,21 @@ for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Xfce4-settings-manager"] floating disable
 for_window [class="Xfce4-taskmanager"] floating enable
 
+
 for_window [class="Hefftor_welcome_app"] floating enable
+for_window [class="Hefftor_polybar_switcher.py"] floating enable
+
+for_window [class="Hefftor_SkelApp.py"] floating enable
+
+for_window [class="Hefftor-betterlockscreen-gui.py"] floating enable
+for_window [class="Hefftor_betterlockscreen_gui"] floating enable
+
+for_window [class="Hefftor-twm-wallpaper-changer.py"] floating enable
+
+for_window [class="Hefftor_skel_gui"] floating enable
+
+for_window [class="Hefftor_slick_greeter_gui"] floating enable
+
 
 #for_window [instance="gimp"] floating disable
 for_window [instance="script-fu"] border normal
