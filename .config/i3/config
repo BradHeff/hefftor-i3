@@ -673,7 +673,8 @@ for_window [window_role="^Preferences$"] floating enable
 for_window [window_role="setup"] floating enable
 
 
-
+# Scratchpad
+for_window [class="URxvt" title="scratch"] floating enable,move scratchpad
 
 
 
