@@ -468,7 +468,7 @@ exec_always --no-startup-id wal -nRa 90 &
 
 #Conky
 exec --no-startup-id conky -c ~/.conkyrc &
-exec --no-startup-id conky -c ~/.conkyrc_helper &
+# exec --no-startup-id conky -c ~/.conkyrc_helper &
 #feh sets wallpaper
 exec --no-startup-id feh --bg-fill /usr/share/backgrounds/hefftorlinux/sundown_landscape.png &
 
